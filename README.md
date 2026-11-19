@@ -51,7 +51,7 @@ Do not use it when:
 From the project root:
 
 ```bash
-specify preset add --from https://github.com/ryukirin/spec-kit-preset-review-layout/archive/refs/tags/v0.6.0.zip
+specify preset add --from https://github.com/ryukirin/spec-kit-preset-review-layout/archive/refs/tags/v0.6.1.zip
 ```
 
 To install from a local copy:
@@ -59,6 +59,8 @@ To install from a local copy:
 ```bash
 specify preset add --dev <path-to-this-folder>
 ```
+
+`.presetignore` keeps `.git/` out of the installed copy on Spec Kit 1.2.4 or later. Earlier versions copy `.git/` from a cloned repository, and on Windows `specify preset remove` then fails on read-only git files. With those versions, use the release archive above or a copy of the folder without `.git/`.
 
 ## Stacking with other presets
 
@@ -87,7 +89,7 @@ The bundled `lean` preset is not supported. Its specify command does not use the
 specify preset resolve spec-template
 ```
 
-The output ends with `(top layer from: spec-review-layout v0.6.0)`. With Claude Code, `.claude/skills/speckit-specify/SKILL.md` and `.claude/skills/speckit-clarify/SKILL.md` end with a `## Review Layout (spec-review-layout preset)` section.
+The output ends with `(top layer from: spec-review-layout v0.6.1)`. With Claude Code, `.claude/skills/speckit-specify/SKILL.md` and `.claude/skills/speckit-clarify/SKILL.md` end with a `## Review Layout (spec-review-layout preset)` section.
 
 ## Usage
 

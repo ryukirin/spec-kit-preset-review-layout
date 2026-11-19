@@ -51,7 +51,7 @@
 プロジェクトのルートで実行する。
 
 ```bash
-specify preset add --from https://github.com/ryukirin/spec-kit-preset-review-layout/archive/refs/tags/v0.6.0.zip
+specify preset add --from https://github.com/ryukirin/spec-kit-preset-review-layout/archive/refs/tags/v0.6.1.zip
 ```
 
 ローカルのフォルダーから入れる場合:
@@ -59,6 +59,8 @@ specify preset add --from https://github.com/ryukirin/spec-kit-preset-review-lay
 ```bash
 specify preset add --dev <このフォルダーのパス>
 ```
+
+Spec Kit 1.2.4 以降は `.presetignore` に従って `.git/` をコピーしない。それより前のバージョンでは、クローンしたリポジトリの `.git/` もプロジェクトにコピーされ、Windows ではその後の `specify preset remove` が読み取り専用の git ファイルで失敗する。これらのバージョンでは、上の release アーカイブから入れるか、`.git/` を含まないコピーを指定する。
 
 ## ほかの preset との併用
 
@@ -87,7 +89,7 @@ specify preset add --dev <このフォルダーのパス>
 specify preset resolve spec-template
 ```
 
-出力の末尾が `(top layer from: spec-review-layout v0.6.0)` になる。Claude Code では、`.claude/skills/speckit-specify/SKILL.md` と `.claude/skills/speckit-clarify/SKILL.md` の末尾に `## Review Layout (spec-review-layout preset)` の節が入る。
+出力の末尾が `(top layer from: spec-review-layout v0.6.1)` になる。Claude Code では、`.claude/skills/speckit-specify/SKILL.md` と `.claude/skills/speckit-clarify/SKILL.md` の末尾に `## Review Layout (spec-review-layout preset)` の節が入る。
 
 ## 使い方
 

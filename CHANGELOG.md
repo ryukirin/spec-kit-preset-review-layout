@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.6.1 - 2026-11-19
+
+### Fixed
+
+- `speckit.clarify`: a new acceptance-scenario row may hold one action or one event in `When`, as the layout rules already allow. The command text still said one action only.
+- `spec-template`: the Lifecycle placeholder diagram pointed at `FR-006`, which the template does not define. It now points at `FR-003`, the template's state table.
+- `spec-template`: the comment wrote "state x action". It now writes "state × action", as the rules do.
+- `.presetignore`: keeps `.git/` out of `--dev` installs from a cloned repository (Spec Kit 1.2.4 or later). Without it, `specify preset remove` failed on Windows because git object files are read-only.
+
+### Documentation
+
+- README: a section on stacking with other presets, in English, Simplified Chinese, and Japanese.
+
 ## 0.6.0 - 2026-11-19
 
 First public release.

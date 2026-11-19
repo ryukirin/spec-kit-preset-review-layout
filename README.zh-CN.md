@@ -51,7 +51,7 @@
 在项目根目录执行。
 
 ```bash
-specify preset add --from https://github.com/ryukirin/spec-kit-preset-review-layout/archive/refs/tags/v0.6.0.zip
+specify preset add --from https://github.com/ryukirin/spec-kit-preset-review-layout/archive/refs/tags/v0.6.1.zip
 ```
 
 从本地目录安装：
@@ -59,6 +59,8 @@ specify preset add --from https://github.com/ryukirin/spec-kit-preset-review-lay
 ```bash
 specify preset add --dev <本目录的路径>
 ```
+
+Spec Kit 1.2.4 及以上版本会按 `.presetignore` 跳过 `.git/`。更早的版本会把克隆下来的仓库里的 `.git/` 一起复制进项目，在 Windows 上之后执行 `specify preset remove` 时，会因为 git 文件是只读的而失败。使用这些版本时，请用上面的 release 压缩包安装，或者先复制一份不含 `.git/` 的目录再安装。
 
 ## 与其他 preset 叠加
 
@@ -87,7 +89,7 @@ specify preset add --dev <本目录的路径>
 specify preset resolve spec-template
 ```
 
-输出末尾为 `(top layer from: spec-review-layout v0.6.0)`。使用 Claude Code 时，`.claude/skills/speckit-specify/SKILL.md` 和 `.claude/skills/speckit-clarify/SKILL.md` 的末尾有 `## Review Layout (spec-review-layout preset)` 一节。
+输出末尾为 `(top layer from: spec-review-layout v0.6.1)`。使用 Claude Code 时，`.claude/skills/speckit-specify/SKILL.md` 和 `.claude/skills/speckit-clarify/SKILL.md` 的末尾有 `## Review Layout (spec-review-layout preset)` 一节。
 
 ## 使用方法
 

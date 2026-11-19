@@ -22,7 +22,7 @@
   Keep the diagrams that fit this feature and delete the others (keep at least one).
   Labels carry names and IDs (US, FR) only. Conditions and values belong in the FRs.
   Keep "Screen layout" only when the feature has a screen.
-  The Lifecycle diagram uses the same states as the state x action table under the FRs.
+  The Lifecycle diagram uses the same states as the state × action table under the FRs.
 -->
 
 **Screen flow**
@@ -56,7 +56,7 @@ sequenceDiagram
 ```mermaid
 stateDiagram-v2
   [*] --> StateA
-  StateA --> StateB: FR-006
+  StateA --> StateB: FR-003
   StateB --> [*]
 ```
 

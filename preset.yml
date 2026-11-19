@@ -3,7 +3,7 @@ schema_version: "1.0"
 preset:
   id: "spec-review-layout"
   name: "Spec Review Layout"
-  version: "0.6.0"
+  version: "0.6.1"
   description: "Lays out spec.md for review: an overview map with Mermaid diagrams, table-based scenarios and edge cases, and FRs with labeled sub-rules and condition tables."
   author: "ryukirin"
   repository: "https://github.com/ryukirin/spec-kit-preset-review-layout"
