@@ -54,6 +54,8 @@ From the project root:
 specify preset add --from https://github.com/ryukirin/spec-kit-preset-review-layout/archive/refs/tags/v0.6.1.zip
 ```
 
+This preset is listed in the [Spec Kit community preset catalog](https://github.github.io/spec-kit/community/presets/spec-review-layout.html), so `specify preset search` finds it. The community catalog is discovery-only, so `specify preset add spec-review-layout` is refused. Install with the `--from` command above.
+
 To install from a local copy:
 
 ```bash

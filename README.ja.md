@@ -54,6 +54,8 @@
 specify preset add --from https://github.com/ryukirin/spec-kit-preset-review-layout/archive/refs/tags/v0.6.1.zip
 ```
 
+この preset は [Spec Kit のコミュニティ preset カタログ](https://github.github.io/spec-kit/community/presets/spec-review-layout.html)に載っており、`specify preset search` で見つかる。コミュニティカタログは検索専用のため、`specify preset add spec-review-layout` は拒否される。上の `--from` のコマンドでインストールする。
+
 ローカルのフォルダーから入れる場合:
 
 ```bash
