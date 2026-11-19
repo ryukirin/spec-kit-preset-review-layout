@@ -60,7 +60,26 @@ To install from a local copy:
 specify preset add --dev <path-to-this-folder>
 ```
 
-The spec template points to the layout rules, so the rules still apply when another preset replaces `speckit.specify` and that command uses the spec template. The bundled `lean` preset is not supported: its specify command does not use the spec template.
+## Stacking with other presets
+
+This preset replaces `spec-template` and appends to `speckit.specify` and `speckit.clarify`. Spec Kit resolves each template and command separately. A smaller priority number ranks higher, and presets with the same priority are ordered by ID. A `replace` layer hides every layer below it, while `append` and `wrap` layers stack.
+
+With the default priority (10) for both presets, the results are as follows. The examples come from the community catalog as of 2026-11.
+
+| Other preset | Examples | Result |
+|---|---|---|
+| Replaces `spec-template` and ranks higher | `mde`, `screenwriting`, `sicario-core` | This preset's template is not used |
+| Replaces `spec-template` and ranks lower | `toc-navigation` | The other preset's template is not used |
+| Appends to or wraps `spec-template` and ranks higher | `a11y-governance`, `okr-bet`, `security-governance` | Its content is added to this preset's template. Both apply |
+| Appends to or wraps `spec-template` and ranks lower | `specassay`, `test-first-governance`, `workflow-preset` | Its content is dropped |
+| Replaces `speckit.specify` and ranks higher | `canon-core`, `command-density` | This preset's specify instructions are dropped. The template still points to the layout rules, so the layout applies if that command uses the spec template |
+| Replaces `speckit.clarify` and ranks higher | `canon-core`, `claude-ask-questions`, `command-density` | This preset's clarify rules are dropped, and clarify no longer keeps the layout when it writes answers back |
+
+Other presets that append to or wrap `speckit.specify` or `speckit.clarify` stack with this preset in either order.
+
+To change the order, set `--priority` at install time. `specify preset set-priority` does not update command and skill files that are already delivered (github/spec-kit#5087), so remove the preset and add it again with the new priority. When two presets replace the same template or command, only one of them applies, whatever the order.
+
+The bundled `lean` preset is not supported. Its specify command does not use the spec template.
 
 ## Check the installation
 

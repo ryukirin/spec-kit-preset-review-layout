@@ -60,7 +60,26 @@ specify preset add --from https://github.com/ryukirin/spec-kit-preset-review-lay
 specify preset add --dev <本目录的路径>
 ```
 
-spec 模板中写有版式规则的位置。其他 preset 替换了 `speckit.specify` 时，只要替换后的命令使用 spec 模板，规则仍然生效。不支持内置的 `lean` preset，它的 specify 命令不使用 spec 模板。
+## 与其他 preset 叠加
+
+本 preset 整份替换 `spec-template`，并向 `speckit.specify` 和 `speckit.clarify` 追加内容。Spec Kit 对每个模板和命令分别解析。priority 数字越小优先级越高，priority 相同时按 preset ID 的字母顺序排列。`replace` 层会遮住它下面的所有层，`append` 和 `wrap` 层可以叠加。
+
+两边都使用默认 priority（10）时，结果如下。例子取自 2026 年 11 月的社区目录。
+
+| 对方 preset | 例子 | 结果 |
+|---|---|---|
+| 替换 `spec-template`，排在前面 | `mde`、`screenwriting`、`sicario-core` | 本 preset 的模板不生效 |
+| 替换 `spec-template`，排在后面 | `toc-navigation` | 对方的模板不生效 |
+| 向 `spec-template` 追加或包裹，排在前面 | `a11y-governance`、`okr-bet`、`security-governance` | 对方的内容加到本 preset 的模板上，两边都生效 |
+| 向 `spec-template` 追加或包裹，排在后面 | `specassay`、`test-first-governance`、`workflow-preset` | 对方的内容被丢掉 |
+| 替换 `speckit.specify`，排在前面 | `canon-core`、`command-density` | 本 preset 给 specify 追加的说明被丢掉。模板中仍写有版式规则的位置，只要对方的命令使用 spec 模板，版式仍然生效 |
+| 替换 `speckit.clarify`，排在前面 | `canon-core`、`claude-ask-questions`、`command-density` | 本 preset 给 clarify 追加的规则被丢掉，clarify 写回回答时不再保持版式 |
+
+其他向 `speckit.specify` 或 `speckit.clarify` 追加或包裹内容的 preset，不论顺序都能和本 preset 叠加。
+
+要调整顺序，在安装时用 `--priority` 指定。`specify preset set-priority` 不会更新已经写入的命令和 skill 文件（github/spec-kit#5087），所以要先卸载，再用新的 priority 重新安装。两个 preset 替换同一个模板或命令时，不论顺序如何，只有一个生效。
+
+不支持内置的 `lean` preset。它的 specify 命令不使用 spec 模板。
 
 ## 确认安装结果
 

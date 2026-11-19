@@ -60,7 +60,26 @@ specify preset add --from https://github.com/ryukirin/spec-kit-preset-review-lay
 specify preset add --dev <このフォルダーのパス>
 ```
 
-spec テンプレートに版面の規則の場所が書いてある。ほかの preset が `speckit.specify` を置き換えても、置き換え後のコマンドが spec テンプレートを使う限り、規則は効く。同梱の `lean` preset には対応しない。`lean` の specify コマンドは spec テンプレートを使わない。
+## ほかの preset との併用
+
+この preset は `spec-template` を丸ごと置き換え、`speckit.specify` と `speckit.clarify` に内容を追加する。Spec Kit はテンプレートとコマンドを 1 つずつ解決する。priority の数字が小さいほど優先され、同じ priority のときは preset ID の文字順に並ぶ。`replace` の層はその下の層をすべて隠し、`append` と `wrap` の層は重なる。
+
+両方とも既定の priority（10）のときの結果は次のとおり。例は 2026 年 11 月時点のコミュニティカタログから取った。
+
+| 相手の preset | 例 | 結果 |
+|---|---|---|
+| `spec-template` を置き換え、先に並ぶ | `mde`、`screenwriting`、`sicario-core` | この preset のテンプレートは使われない |
+| `spec-template` を置き換え、後に並ぶ | `toc-navigation` | 相手のテンプレートは使われない |
+| `spec-template` に追加または包む形で、先に並ぶ | `a11y-governance`、`okr-bet`、`security-governance` | 相手の内容がこの preset のテンプレートに加わり、両方とも効く |
+| `spec-template` に追加または包む形で、後に並ぶ | `specassay`、`test-first-governance`、`workflow-preset` | 相手の内容は使われない |
+| `speckit.specify` を置き換え、先に並ぶ | `canon-core`、`command-density` | この preset が specify に追加した指示は使われない。テンプレートに版面の規則の場所が書いてあるため、相手のコマンドが spec テンプレートを使う限り版面は効く |
+| `speckit.clarify` を置き換え、先に並ぶ | `canon-core`、`claude-ask-questions`、`command-density` | この preset が clarify に追加した規則は使われず、clarify が回答を書き戻すときに版面が保たれない |
+
+`speckit.specify` や `speckit.clarify` に追加または包む形の preset は、順序にかかわらずこの preset と重ねて使える。
+
+順序を変えるときは、インストール時に `--priority` を指定する。`specify preset set-priority` は書き込み済みのコマンドファイルと skill ファイルを更新しない（github/spec-kit#5087）ため、いったんアンインストールし、新しい priority で入れ直す。2 つの preset が同じテンプレートやコマンドを置き換える場合、順序にかかわらず片方しか効かない。
+
+同梱の `lean` preset には対応しない。`lean` の specify コマンドは spec テンプレートを使わない。
 
 ## インストールの確認
 
