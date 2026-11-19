@@ -1,0 +1,39 @@
+schema_version: "1.0"
+
+preset:
+  id: "spec-review-layout"
+  name: "Spec Review Layout"
+  version: "0.6.0"
+  description: "Lays out spec.md for review: an overview map with Mermaid diagrams, table-based scenarios and edge cases, and FRs with labeled sub-rules and condition tables."
+  author: "ryukirin"
+  repository: "https://github.com/ryukirin/spec-kit-preset-review-layout"
+  license: "MIT"
+
+requires:
+  speckit_version: ">=1.0.0"
+
+provides:
+  templates:
+    - type: "template"
+      name: "spec-template"
+      file: "templates/spec-template.md"
+      description: "Spec template with Overview Map, scenario tables, and structured FRs"
+      strategy: "replace"
+
+    - type: "command"
+      name: "speckit.specify"
+      file: "commands/speckit.specify.md"
+      description: "Applies the layout rules when writing spec.md"
+      strategy: "append"
+
+    - type: "command"
+      name: "speckit.clarify"
+      file: "commands/speckit.clarify.md"
+      description: "Keeps the layout when clarify edits spec.md"
+      strategy: "append"
+
+tags:
+  - "spec"
+  - "review"
+  - "mermaid"
+  - "tables"
